@@ -83,4 +83,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserSubscription::class)->where('status', 'active')->latestOfMany();
     }
+    public function canAccessPanel(User $user): bool
+    {
+        return str_ends_with($user->email, 'admin@admin.com') && $user->hasVerifiedEmail();
+    }
 }
