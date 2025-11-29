@@ -83,10 +83,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserSubscription::class)->where('status', 'active')->latestOfMany();
     }
-
-    public function canAccessPanel(): bool
+    public function canAccessPanel(User $user): bool
     {
-        // Only allow active users to access Filament panel
-        return $this->status === 'active';
+        return str_ends_with($user->email, 'admin@admin.com') && $user->hasVerifiedEmail();
     }
 }
