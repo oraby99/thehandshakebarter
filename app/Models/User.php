@@ -85,6 +85,6 @@ class User extends Authenticatable
     }
     public function canAccessPanel(User $user): bool
     {
-        return str_ends_with($user->email, 'admin@admin.com') && $user->hasVerifiedEmail();
+        return true;
     }
 }
