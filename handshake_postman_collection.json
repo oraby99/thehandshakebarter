@@ -1,0 +1,1039 @@
+{
+    "info": {
+        "name": "Handshake API - Complete",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/auth/register",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "register"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Login",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "var jsonData = pm.response.json();",
+                                    "if (jsonData.access_token) {",
+                                    "    pm.collectionVariables.set(\"token\", jsonData.access_token);",
+                                    "    console.log(\"Token saved: \" + jsonData.access_token);",
+                                    "}"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/auth/login",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "login"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Forgot Password",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/auth/forgot-password",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "forgot-password"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Verify OTP",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/auth/verify-otp",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "verify-otp"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Reset Password",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"otp\": \"123456\",\n  \"password\": \"newpassword123\",\n  \"password_confirmation\": \"newpassword123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/auth/reset-password",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "reset-password"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Resend OTP",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/auth/resend-otp",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "auth",
+                                "resend-otp"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Profile",
+            "item": [
+                {
+                    "name": "Get Profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/me",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Profile",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "John Updated",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "city",
+                                    "value": "Los Angeles",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "avatar",
+                                    "type": "file",
+                                    "src": []
+                                },
+                                {
+                                    "key": "_method",
+                                    "value": "PUT",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/me",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Favorites",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/me/favorites",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "me",
+                                "favorites"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "User Wants",
+            "item": [
+                {
+                    "name": "List User Wants",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/user-wants",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "user-wants"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create User Want",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"category_id\": 1,\n  \"sub_category_id\": 1,\n  \"description\": \"Looking for a specific vintage jacket\",\n  \"condition\": \"used\",\n  \"size\": \"L\",\n  \"brand\": \"Levis\",\n  \"color\": \"Blue\",\n  \"keywords\": \"vintage, denim\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/user-wants",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "user-wants"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get User Want",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/user-wants/1",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "user-wants",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update User Want",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"condition\": \"like_new\",\n  \"color\": \"Dark Blue\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/user-wants/1",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "user-wants",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete User Want",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/user-wants/1",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "user-wants",
+                                "1"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Items",
+            "item": [
+                {
+                    "name": "List Items",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/items",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "items"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Item",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/items/1",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "items",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Item",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"category_id\": 1,\n  \"sub_category_id\": 1,\n  \"title\": \"iPhone 13 Pro\",\n  \"description\": \"Excellent condition\",\n  \"condition\": \"like_new\",\n  \"size\": \"Pro\",\n  \"brand\": \"Apple\",\n  \"color\": \"Graphite\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/items",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "items"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Favorite Item",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/items/1/favorite",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "items",
+                                "1",
+                                "favorite"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Unfavorite Item",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/items/1/favorite",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "items",
+                                "1",
+                                "favorite"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Categories",
+            "item": [
+                {
+                    "name": "List Categories",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/categories",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Barters",
+            "item": [
+                {
+                    "name": "List Barters",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Barter",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"receiver_id\": 2,\n  \"requester_item_id\": 1,\n  \"receiver_item_id\": 2\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Accept Barter",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters/1/accept",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters",
+                                "1",
+                                "accept"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Reject Barter",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"reason\": \"Not interested\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters/1/reject",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters",
+                                "1",
+                                "reject"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Rate Barter",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"stars\": 5,\n  \"comment\": \"Great trade!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters/1/rate",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters",
+                                "1",
+                                "rate"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Chat",
+            "item": [
+                {
+                    "name": "List Conversations",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/chat/conversations",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "chat",
+                                "conversations"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Send Message to Barter",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"message_body\": \"Hello! Interested in trading.\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters/1/messages",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters",
+                                "1",
+                                "messages"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Barter Conversation",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/barters/1/conversation",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "barters",
+                                "1",
+                                "conversation"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Contact",
+            "item": [
+                {
+                    "name": "Create Ticket",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"subject\": \"Help needed\",\n  \"message\": \"I have an issue...\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/contact",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "contact"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Subscriptions",
+            "item": [
+                {
+                    "name": "List Plans",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/subscriptions",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "subscriptions"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Pages",
+            "item": [
+                {
+                    "name": "List Pages",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/pages",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "pages"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "local_url",
+            "value": "http://localhost:8000"
+        },
+        {
+            "key": "token",
+            "value": ""
+        }
+    ]
+}
