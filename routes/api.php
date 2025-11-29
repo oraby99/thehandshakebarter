@@ -15,11 +15,7 @@ use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\UserWantController;
 use App\Http\Controllers\API\NotificationController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::prefix('v1')->group(function () {
     // Auth
