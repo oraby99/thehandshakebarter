@@ -20,7 +20,7 @@ class PageController extends Controller
 
     public function show($slug)
     {
-        $page = Page::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        $page = Page::with('videos')->where('slug', $slug)->where('is_published', true)->firstOrFail();
 
         return response()->json([
             'data' => new PageResource($page)

@@ -15,13 +15,13 @@ class Item extends Model
         'sub_category_id',
         'title',
         'description',
-        'condition',
-        'size',
-        'brand',
-        'color',
-        'location_city',
+        'condition_id',
+        'size_id',
+        'brand_id',
+        'item_status_id',
+        'color_id',
+        'city_id',
         'location_area',
-        'status',
         'is_featured',
         'is_visible',
     ];
@@ -46,6 +46,31 @@ class Item extends Model
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
+    public function itemStatus()
+    {
+        return $this->belongsTo(ItemStatus::class);
+    }
+
     public function images()
     {
         return $this->hasMany(ItemImage::class)->orderBy('sort_order');
@@ -59,5 +84,10 @@ class Item extends Model
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorites', 'item_id', 'user_id')->withTimestamps();
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

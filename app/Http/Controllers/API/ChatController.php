@@ -24,9 +24,11 @@ class ChatController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($barterId)
     {
-        $conversation = Conversation::with(['messages.sender', 'barter'])->findOrFail($id);
+        $conversation = Conversation::where('barter_id', $barterId)
+            ->with(['messages.sender', 'barter'])
+            ->firstOrFail();
 
         // Authorization check
         if ($conversation->barter->requester_id !== Auth::id() && $conversation->barter->receiver_id !== Auth::id()) {

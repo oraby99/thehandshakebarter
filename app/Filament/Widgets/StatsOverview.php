@@ -24,7 +24,7 @@ class StatsOverview extends BaseWidget
                 ->description('All registered users')
                 ->descriptionIcon('heroicon-m-user-group')
                 ->color('success'),
-            Stat::make('Active Items', Item::where('status', 'active')->count())
+            Stat::make('Active Items', Item::where('item_status_id', 1)->count())
                 ->description('Items listed for trade')
                 ->descriptionIcon('heroicon-m-cube')
                 ->color('primary'),

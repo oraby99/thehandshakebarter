@@ -16,6 +16,7 @@ class UserWantResource extends Resource
     protected static ?string $model = UserWant::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-bookmark';
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?string $navigationGroup = 'User Management';
 
@@ -41,15 +42,15 @@ class UserWantResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->maxLength(65535)
                     ->columnSpanFull(),
-                Forms\Components\Select::make('condition')
-                    ->options([
-                        'new' => 'New',
-                        'like_new' => 'Like New',
-                        'used' => 'Used',
-                        'damaged' => 'Damaged',
-                    ]),
-                Forms\Components\TextInput::make('size'),
-                Forms\Components\TextInput::make('brand'),
+                Forms\Components\Select::make('condition_id')
+                    ->relationship('condition', 'name')
+                    ->native(false),
+                Forms\Components\Select::make('size_id')
+                    ->relationship('size', 'name')
+                    ->native(false),
+                Forms\Components\Select::make('brand_id')
+                    ->relationship('brand', 'name')
+                    ->native(false),
                 Forms\Components\TextInput::make('color'),
                 Forms\Components\FileUpload::make('images')
                     ->multiple()

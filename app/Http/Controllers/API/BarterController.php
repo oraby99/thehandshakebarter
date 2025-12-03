@@ -148,7 +148,14 @@ class BarterController extends Controller
     private function authorizeBarter(Barter $barter)
     {
         if ($barter->requester_id !== Auth::id() && $barter->receiver_id !== Auth::id()) {
-            abort(403);
+            return response()->json([
+                'message' => 'You are not authorized to perform this action.',
+                'debug' => [
+                    'your_user_id' => Auth::id(),
+                    'allowed_users' => [$barter->requester_id, $barter->receiver_id],
+                    'barter_id' => $barter->id
+                ]
+            ], 403)->throwResponse();
         }
     }
 }

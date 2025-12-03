@@ -14,10 +14,10 @@ class UserWant extends Model
         'category_id',
         'sub_category_id',
         'description',
-        'condition',
-        'size',
-        'brand',
-        'color',
+        'condition_id',
+        'size_id',
+        'brand_id',
+        'color_id',
         'images',
         'keywords',
         'specific_item_id',
@@ -40,6 +40,26 @@ class UserWant extends Model
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class);
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
     }
 
     public function specificItem()

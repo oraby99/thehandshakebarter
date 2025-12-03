@@ -29,10 +29,10 @@ class SubscriptionResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
+                    ->maxLength(65535),
                 Forms\Components\TextInput::make('duration_days')
                     ->required()
+                    ->label('Number of Barters')
                     ->numeric(),
                 Forms\Components\TextInput::make('price')
                     ->required()
@@ -59,6 +59,7 @@ class SubscriptionResource extends Resource
                     ->money()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('duration_days')
+                    ->label('Number of Barters')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('benefits')

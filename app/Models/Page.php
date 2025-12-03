@@ -21,4 +21,9 @@ class Page extends Model
         'video_urls' => 'array',
         'is_published' => 'boolean',
     ];
+
+    public function videos()
+    {
+        return $this->hasMany(PageVideo::class);
+    }
 }

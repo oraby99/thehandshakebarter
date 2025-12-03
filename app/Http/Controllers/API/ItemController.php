@@ -13,8 +13,10 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Item::with(['user', 'category', 'primaryImage'])
-            ->where('status', 'active')
+        $query = Item::with(['user', 'category', 'primaryImage', 'city', 'color'])
+            ->whereHas('itemStatus', function ($q) {
+                $q->where('slug', 'active');
+            })
             ->where('is_visible', true);
 
         if ($request->has('category_id')) {
@@ -28,8 +30,12 @@ class ItemController extends Controller
             });
         }
 
-        if ($request->has('city')) {
-            $query->where('location_city', $request->city);
+        if ($request->has('city_id')) {
+            $query->where('city_id', $request->city_id);
+        }
+
+        if ($request->has('color_id')) {
+            $query->where('color_id', $request->color_id);
         }
 
         $items = $query->latest()->paginate(20);
@@ -39,7 +45,7 @@ class ItemController extends Controller
 
     public function show(Item $item)
     {
-        $item->load(['user', 'category', 'images', 'subcategory']);
+        $item->load(['user', 'category', 'images', 'subcategory', 'city', 'color']);
         return new ItemResource($item);
     }
 
@@ -50,11 +56,11 @@ class ItemController extends Controller
             'subcategory_id' => 'nullable|exists:sub_categories,id',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'condition' => 'required|string',
-            'size' => 'nullable|string',
-            'brand' => 'nullable|string',
-            'color' => 'nullable|string',
-            'location_city' => 'nullable|string',
+            'condition_id' => 'required|exists:conditions,id',
+            'size_id' => 'nullable|exists:sizes,id',
+            'brand_id' => 'nullable|exists:brands,id',
+            'color_id' => 'nullable|exists:colors,id',
+            'city_id' => 'nullable|exists:cities,id',
             'location_area' => 'nullable|string',
             'images' => 'nullable|array',
             'images.*' => 'image|max:2048',
@@ -79,18 +85,26 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         if ($item->user_id !== Auth::id()) {
-            abort(403);
+            return response()->json([
+                'message' => 'You are not authorized to update this item.',
+                'debug' => [
+                    'your_user_id' => Auth::id(),
+                    'item_owner_id' => $item->user_id,
+                    'item_id' => $item->id
+                ]
+            ], 403);
         }
 
         $validated = $request->validate([
             'category_id' => 'exists:categories,id',
             'title' => 'string|max:255',
             'description' => 'string',
-            'condition' => 'string',
-            'size' => 'nullable|string',
-            'brand' => 'nullable|string',
-            'color' => 'nullable|string',
-            'status' => 'in:draft,active,archived',
+            'condition_id' => 'exists:conditions,id',
+            'size_id' => 'nullable|exists:sizes,id',
+            'brand_id' => 'nullable|exists:brands,id',
+            'color_id' => 'nullable|exists:colors,id',
+            'city_id' => 'nullable|exists:cities,id',
+            'item_status_id' => 'exists:item_statuses,id',
         ]);
 
         $item->update($validated);
@@ -101,7 +115,14 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         if ($item->user_id !== Auth::id()) {
-            abort(403);
+            return response()->json([
+                'message' => 'You are not authorized to delete this item.',
+                'debug' => [
+                    'your_user_id' => Auth::id(),
+                    'item_owner_id' => $item->user_id,
+                    'item_id' => $item->id
+                ]
+            ], 403);
         }
 
         $item->delete();

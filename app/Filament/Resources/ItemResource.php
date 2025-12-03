@@ -49,30 +49,34 @@ class ItemResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Select::make('condition')
-                    ->options([
-                        'new' => 'New',
-                        'like_new' => 'Like New',
-                        'used' => 'Used',
-                        'damaged' => 'Damaged',
-                    ])
-                    ->required()
-                    ->required()
-                    ->native(false),
-                Forms\Components\TextInput::make('size'),
-                Forms\Components\TextInput::make('brand'),
-                Forms\Components\TextInput::make('color'),
-                Forms\Components\TextInput::make('location_city'),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'draft' => 'Draft',
-                        'active' => 'Active',
-                        'archived' => 'Archived',
-                        'traded' => 'Traded',
-                    ])
+                Forms\Components\Select::make('condition_id')
+                    ->relationship('condition', 'name')
                     ->required()
                     ->native(false)
-                    ->default('active'),
+                    ->preload(),
+                Forms\Components\Select::make('size_id')
+                    ->relationship('size', 'name')
+                    ->native(false)
+                    ->preload(),
+                Forms\Components\Select::make('brand_id')
+                    ->relationship('brand', 'name')
+                    ->native(false)
+                    ->preload(),
+                Forms\Components\Select::make('color_id')
+                    ->relationship('color', 'name')
+                    ->native(false)
+                    ->searchable()
+                    ->preload(),
+                Forms\Components\Select::make('city_id')
+                    ->relationship('city', 'name')
+                    ->native(false)
+                    ->searchable()
+                    ->preload(),
+                Forms\Components\Select::make('item_status_id')
+                    ->relationship('itemStatus', 'name')
+                    ->required()
+                    ->native(false)
+                    ->preload(),
                 Forms\Components\Toggle::make('is_featured'),
                 Forms\Components\Toggle::make('is_visible')
                     ->default(true),
@@ -112,14 +116,16 @@ class ItemResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status')
+                Tables\Columns\TextColumn::make('itemStatus.name')
+                    ->label('Status')
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match (strtolower($state)) {
                         'active' => 'success',
                         'draft' => 'warning',
                         'archived' => 'gray',
                         'traded' => 'info',
-                        'default' => 'gray',
+                        'sold' => 'danger',
+                        default => 'gray',
                     }),
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean(),

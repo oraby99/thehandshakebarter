@@ -33,11 +33,14 @@ class PageResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('content')
                     ->columnSpanFull(),
-                Forms\Components\Repeater::make('video_urls')
+                Forms\Components\Repeater::make('videos')
+                    ->relationship()
                     ->schema([
-                        Forms\Components\TextInput::make('url')
+                        Forms\Components\TextInput::make('video_url')
                             ->url()
                             ->required(),
+                        Forms\Components\Textarea::make('description')
+                            ->rows(3),
                     ])
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_published')

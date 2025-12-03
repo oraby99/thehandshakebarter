@@ -58,6 +58,7 @@ class BarterResource extends Resource
                     ->required()
                     ->default('pending'),
                 Forms\Components\Textarea::make('rejection_reason')
+                    ->label('Cancel Reason')
                     ->columnSpanFull(),
             ]);
     }

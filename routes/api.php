@@ -36,6 +36,14 @@ Route::prefix('v1')->group(function () {
     Route::get('subscriptions', [SubscriptionController::class, 'index']);
     Route::get('subscription-plans', [SubscriptionController::class, 'index']);
 
+    // Attributes (public)
+    Route::get('brands', [\App\Http\Controllers\API\AttributeController::class, 'brands']);
+    Route::get('colors', [\App\Http\Controllers\API\AttributeController::class, 'colors']);
+    Route::get('cities', [\App\Http\Controllers\API\AttributeController::class, 'cities']);
+    Route::get('item-statuses', [\App\Http\Controllers\API\AttributeController::class, 'itemStatuses']);
+    Route::get('conditions', [\App\Http\Controllers\API\AttributeController::class, 'conditions']);
+    Route::get('sizes', [\App\Http\Controllers\API\AttributeController::class, 'sizes']);
+
     // Protected
     Route::middleware(['auth:sanctum', 'verified.api'])->group(function () {
         Route::post('auth/logout', [AuthController::class, 'logout']);
