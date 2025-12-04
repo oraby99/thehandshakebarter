@@ -15,9 +15,8 @@ class ItemController extends Controller
     {
         $query = Item::with(['user', 'category', 'primaryImage', 'city', 'color'])
             ->whereHas('itemStatus', function ($q) {
-                $q->where('slug', 'active');
-            })
-            ->where('is_visible', true);
+                $q->where('name', 'Active');
+            });
 
         if ($request->has('category_id')) {
             $query->where('category_id', $request->category_id);

@@ -20,7 +20,7 @@ class User extends Authenticatable
         'password',
         'avatar',
         'country',
-        'city',
+        'city_id',
         'address',
         'status',
         'average_rating',
@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->hasMany(Item::class);
     }
 
+    public function barters()
+    {
+        return $this->hasMany(Barter::class, 'requester_id');
+    }
+
     public function bartersSent()
     {
         return $this->hasMany(Barter::class, 'requester_id');
@@ -60,6 +65,11 @@ class User extends Authenticatable
     }
 
     public function ratingsReceived()
+    {
+        return $this->hasMany(Rating::class, 'to_user_id');
+    }
+
+    public function ratings()
     {
         return $this->hasMany(Rating::class, 'to_user_id');
     }
@@ -83,6 +93,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserSubscription::class)->where('status', 'active')->latestOfMany();
     }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
     public function canAccessPanel(User $user): bool
     {
         return str_ends_with($user->email, 'admin@admin.com') && $user->hasVerifiedEmail();

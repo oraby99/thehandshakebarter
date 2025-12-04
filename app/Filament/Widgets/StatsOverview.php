@@ -13,7 +13,7 @@ use App\Models\SubCategory;
 use App\Models\Payment;
 use App\Models\Subscription;
 use App\Models\ContactTicket;
-use App\Models\Page;
+
 
 class StatsOverview extends BaseWidget
 {
@@ -28,12 +28,12 @@ class StatsOverview extends BaseWidget
                 ->description('Items listed for trade')
                 ->descriptionIcon('heroicon-m-cube')
                 ->color('primary'),
-            Stat::make('Categories', Category::where('is_active', true)->count())
-                ->description('Active categories')
+            Stat::make('Categories', Category::count())
+                ->description('Total categories')
                 ->descriptionIcon('heroicon-m-tag')
                 ->color('info'),
-            Stat::make('SubCategories', SubCategory::where('is_active', true)->count())
-                ->description('Active subcategories')
+            Stat::make('SubCategories', SubCategory::count())
+                ->description('Total subcategories')
                 ->descriptionIcon('heroicon-m-hashtag')
                 ->color('info'),
             Stat::make('Active Barters', Barter::whereIn('status', ['pending', 'accepted'])->count())
@@ -56,10 +56,7 @@ class StatsOverview extends BaseWidget
                 ->description('Pending support requests')
                 ->descriptionIcon('heroicon-m-envelope')
                 ->color('danger'),
-            Stat::make('Pages', Page::where('is_published', true)->count())
-                ->description('Published content')
-                ->descriptionIcon('heroicon-m-document-text')
-                ->color('gray'),
+
         ];
     }
 }

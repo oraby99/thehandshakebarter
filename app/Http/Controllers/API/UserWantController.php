@@ -42,7 +42,7 @@ class UserWantController extends Controller
             ->where('category_id', $want->category_id)
             ->where('user_id', '!=', Auth::id())
             ->whereHas('itemStatus', function ($query) {
-                $query->where('slug', 'active');
+                $query->where('name', 'Active');
             })
             ->when($want->sub_category_id, function ($query) use ($want) {
                 $query->where('sub_category_id', $want->sub_category_id);

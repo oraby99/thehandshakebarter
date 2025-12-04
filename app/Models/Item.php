@@ -22,13 +22,10 @@ class Item extends Model
         'color_id',
         'city_id',
         'location_area',
-        'is_featured',
-        'is_visible',
     ];
 
     protected $casts = [
-        'is_featured' => 'boolean',
-        'is_visible' => 'boolean',
+        //
     ];
 
     public function user()

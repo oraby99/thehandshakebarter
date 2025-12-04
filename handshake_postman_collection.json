@@ -424,7 +424,7 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{local_url}}/api/v1/user-wants/1",
+                            "raw": "{{local_url}}/api/v1/user-wants/2",
                             "host": [
                                 "{{local_url}}"
                             ],
@@ -432,7 +432,7 @@
                                 "api",
                                 "v1",
                                 "user-wants",
-                                "1"
+                                "2"
                             ]
                         }
                     },
@@ -461,7 +461,7 @@
                             "raw": "{\n  \"condition_id\": 2,\n  \"color_id\": 13\n}"
                         },
                         "url": {
-                            "raw": "{{local_url}}/api/v1/user-wants/1",
+                            "raw": "{{local_url}}/api/v1/user-wants/2",
                             "host": [
                                 "{{local_url}}"
                             ],
@@ -469,7 +469,7 @@
                                 "api",
                                 "v1",
                                 "user-wants",
-                                "1"
+                                "2"
                             ]
                         }
                     },
@@ -490,7 +490,7 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{local_url}}/api/v1/user-wants/1",
+                            "raw": "{{local_url}}/api/v1/user-wants/2",
                             "host": [
                                 "{{local_url}}"
                             ],
@@ -498,6 +498,60 @@
                                 "api",
                                 "v1",
                                 "user-wants",
+                                "2"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Categories",
+            "item": [
+                {
+                    "name": "List Items",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/categories",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Category",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{local_url}}/api/v1/categories/1",
+                            "host": [
+                                "{{local_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "categories",
                                 "1"
                             ]
                         }
@@ -544,7 +598,7 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{local_url}}/api/v1/items/1",
+                            "raw": "{{local_url}}/api/v1/items/2",
                             "host": [
                                 "{{local_url}}"
                             ],
@@ -552,7 +606,7 @@
                                 "api",
                                 "v1",
                                 "items",
-                                "1"
+                                "2"
                             ]
                         }
                     },
@@ -675,7 +729,7 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{local_url}}/api/v1/items/1/favorite",
+                            "raw": "{{local_url}}/api/v1/items/2/favorite",
                             "host": [
                                 "{{local_url}}"
                             ],
@@ -683,7 +737,7 @@
                                 "api",
                                 "v1",
                                 "items",
-                                "1",
+                                "2",
                                 "favorite"
                             ]
                         }
@@ -705,7 +759,7 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{local_url}}/api/v1/items/1/favorite",
+                            "raw": "{{local_url}}/api/v1/items/2/favorite",
                             "host": [
                                 "{{local_url}}"
                             ],
@@ -713,7 +767,7 @@
                                 "api",
                                 "v1",
                                 "items",
-                                "1",
+                                "2",
                                 "favorite"
                             ]
                         }
@@ -951,7 +1005,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"receiver_id\": 2,\n  \"requester_item_id\": 1,\n  \"receiver_item_id\": 2\n}"
+                            "raw": "{\n  \"receiver_id\": 2,\n  \"requester_item_id\": 2,\n  \"receiver_item_id\": 3\n}"
                         },
                         "url": {
                             "raw": "{{local_url}}/api/v1/barters",

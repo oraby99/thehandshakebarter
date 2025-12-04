@@ -14,14 +14,11 @@ class SubCategory extends Model
     protected $fillable = [
         'category_id',
         'name',
-        'slug',
-        'sort_order',
-        'is_active',
+        'image',
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
-        'sort_order' => 'integer',
+        //
     ];
 
     public function category()

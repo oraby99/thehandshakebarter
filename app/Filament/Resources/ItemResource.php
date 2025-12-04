@@ -25,12 +25,7 @@ class ItemResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->required()
-                    ->native(false)
-                    ->searchable()
-                    ->preload(),
+                // User ID removed
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->required()
@@ -77,9 +72,7 @@ class ItemResource extends Resource
                     ->required()
                     ->native(false)
                     ->preload(),
-                Forms\Components\Toggle::make('is_featured'),
-                Forms\Components\Toggle::make('is_visible')
-                    ->default(true),
+                // Visibility fields removed
                 Forms\Components\Section::make('Images')
                     ->schema([
                         Forms\Components\Repeater::make('images')
@@ -127,8 +120,7 @@ class ItemResource extends Resource
                         'sold' => 'danger',
                         default => 'gray',
                     }),
-                Tables\Columns\IconColumn::make('is_featured')
-                    ->boolean(),
+                // Featured column removed
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

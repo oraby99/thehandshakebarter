@@ -30,10 +30,6 @@ class ColorResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(ignoreRecord: true),
                 Forms\Components\ColorPicker::make('hex_code')
                     ->label('Hex Code'),
             ]);
@@ -50,9 +46,6 @@ class ColorResource extends Resource
                     ->sortable(),
                 Tables\Columns\ColorColumn::make('hex_code')
                     ->label('Color'),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

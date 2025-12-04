@@ -50,17 +50,13 @@ class CategorySeeder extends Seeder
         foreach ($categories as $categoryData) {
             $category = Category::create([
                 'name' => $categoryData['name'],
-                'slug' => Str::slug($categoryData['name']),
-                'sort_order' => 0,
-                'is_active' => true,
+                'image' => null, // Can be updated later with actual images
             ]);
 
-            foreach ($categoryData['subcategories'] as $index => $subName) {
+            foreach ($categoryData['subcategories'] as $subName) {
                 $category->subCategories()->create([
                     'name' => $subName,
-                    'slug' => Str::slug($subName),
-                    'sort_order' => $index,
-                    'is_active' => true,
+                    'image' => null, // Can be updated later with actual images
                 ]);
             }
         }

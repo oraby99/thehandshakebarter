@@ -16,7 +16,6 @@ class SizeSeeder extends Seeder
         foreach ($sizes as $size) {
             \App\Models\Size::create([
                 'name' => $size,
-                'slug' => \Illuminate\Support\Str::slug($size),
             ]);
         }
     }

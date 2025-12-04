@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => Hash::make('123456'),
                 'phone' => '+1234567890',
-                'country' => 'United States',
-                'city' => 'New York',
+                'country' => 'Egypt',
+                'city_id' => 1, // Cairo
                 'address' => '123 Main St',
                 'status' => 'active',
                 'average_rating' => 4.5,
@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
                 'email' => 'jane@example.com',
                 'password' => Hash::make('password'),
                 'phone' => '+1234567891',
-                'country' => 'United States',
-                'city' => 'Los Angeles',
+                'country' => 'Egypt',
+                'city_id' => 2, // Alexandria
                 'address' => '456 Oak Ave',
                 'status' => 'active',
                 'average_rating' => 4.8,
@@ -45,8 +45,8 @@ class UserSeeder extends Seeder
                 'email' => 'mike@example.com',
                 'password' => Hash::make('password'),
                 'phone' => '+1234567892',
-                'country' => 'United States',
-                'city' => 'Chicago',
+                'country' => 'Egypt',
+                'city_id' => 3, // Giza
                 'address' => '789 Elm St',
                 'status' => 'active',
                 'average_rating' => 4.2,

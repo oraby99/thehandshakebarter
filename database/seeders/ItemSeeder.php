@@ -13,10 +13,10 @@ class ItemSeeder extends Seeder
 {
     public function run(): void
     {
-        $electronics = Category::where('slug', 'electronics')->first();
-        $phones = SubCategory::where('slug', 'phones')->first();
-        $furniture = Category::where('slug', 'furniture')->first();
-        $sofas = SubCategory::where('slug', 'sofas')->first();
+        $electronics = Category::where('name', 'Electronics')->first();
+        $phones = SubCategory::where('name', 'Phones')->first();
+        $furniture = Category::where('name', 'Furniture')->first();
+        $sofas = SubCategory::where('name', 'Sofas')->first();
 
         $items = [
             [
@@ -29,8 +29,6 @@ class ItemSeeder extends Seeder
                 'city_id' => 1,
                 'color_id' => 1, // Black
                 'item_status_id' => 1,
-                'is_featured' => true,
-                'is_visible' => true,
             ],
             [
                 'user_id' => 2,
@@ -42,8 +40,6 @@ class ItemSeeder extends Seeder
                 'city_id' => 1,
                 'color_id' => 11, // Gray
                 'item_status_id' => 1,
-                'is_featured' => false,
-                'is_visible' => true,
             ],
             [
                 'user_id' => 1,
@@ -55,8 +51,6 @@ class ItemSeeder extends Seeder
                 'city_id' => 1,
                 'color_id' => 2, // White
                 'item_status_id' => 1,
-                'is_featured' => false,
-                'is_visible' => true,
             ],
             [
                 'user_id' => 3,
@@ -68,8 +62,6 @@ class ItemSeeder extends Seeder
                 'city_id' => 1,
                 'color_id' => 10, // Brown
                 'item_status_id' => 1,
-                'is_featured' => false,
-                'is_visible' => true,
             ],
         ];
 

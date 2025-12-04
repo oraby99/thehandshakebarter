@@ -16,7 +16,6 @@ class ItemStatusSeeder extends Seeder
         foreach ($statuses as $status) {
             \App\Models\ItemStatus::create([
                 'name' => $status,
-                'slug' => \Illuminate\Support\Str::slug($status),
             ]);
         }
     }

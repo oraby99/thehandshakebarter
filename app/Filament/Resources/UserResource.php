@@ -43,8 +43,11 @@ class UserResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('country')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('city')
-                    ->maxLength(255),
+                Forms\Components\Select::make('city_id')
+                    ->relationship('city', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->native(false),
                 Forms\Components\Select::make('status')
                     ->options([
                         'active' => 'Active',
@@ -68,8 +71,12 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('city')
+                Tables\Columns\TextColumn::make('city.name')
+                    ->label('City')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('average_rating')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
@@ -108,7 +115,9 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\BartersRelationManager::class,
+            RelationManagers\ItemsRelationManager::class,
+            RelationManagers\RatingsRelationManager::class,
         ];
     }
 

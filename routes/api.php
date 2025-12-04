@@ -31,6 +31,7 @@ Route::prefix('v1')->group(function () {
     Route::get('pages/{slug}', [PageController::class, 'show']);
     Route::post('contact', [ContactController::class, 'store']);
     Route::get('categories', [CategoryController::class, 'index']);
+    Route::get('categories/{category}', [CategoryController::class, 'show']);
     Route::get('items', [ItemController::class, 'index']);
     Route::get('items/{item}', [ItemController::class, 'show']);
     Route::get('subscriptions', [SubscriptionController::class, 'index']);

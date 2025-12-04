@@ -18,7 +18,7 @@ class ColorSeeder extends Seeder
             ['name' => 'White', 'hex_code' => '#FFFFFF'],
             ['name' => 'Red', 'hex_code' => '#FF0000'],
             ['name' => 'Blue', 'hex_code' => '#0000FF'],
-            ['name' => 'Green', 'hex_code' => '#008000'],
+            ['name' => 'Green', 'hex_code' => '#00FF00'],
             ['name' => 'Yellow', 'hex_code' => '#FFFF00'],
             ['name' => 'Orange', 'hex_code' => '#FFA500'],
             ['name' => 'Purple', 'hex_code' => '#800080'],
@@ -28,16 +28,15 @@ class ColorSeeder extends Seeder
             ['name' => 'Beige', 'hex_code' => '#F5F5DC'],
             ['name' => 'Navy', 'hex_code' => '#000080'],
             ['name' => 'Maroon', 'hex_code' => '#800000'],
-            ['name' => 'Gold', 'hex_code' => '#FFD700'],
+            ['name' => 'Teal', 'hex_code' => '#008080'],
+            ['name' => 'Olive', 'hex_code' => '#808000'],
             ['name' => 'Silver', 'hex_code' => '#C0C0C0'],
-            ['name' => 'Multi-Color', 'hex_code' => null],
-            ['name' => 'Others', 'hex_code' => null],
+            ['name' => 'Gold', 'hex_code' => '#FFD700'],
         ];
 
         foreach ($colors as $color) {
             Color::create([
                 'name' => $color['name'],
-                'slug' => Str::slug($color['name']),
                 'hex_code' => $color['hex_code'],
             ]);
         }

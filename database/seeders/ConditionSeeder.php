@@ -16,7 +16,6 @@ class ConditionSeeder extends Seeder
         foreach ($conditions as $condition) {
             \App\Models\Condition::create([
                 'name' => $condition,
-                'slug' => \Illuminate\Support\Str::slug($condition),
             ]);
         }
     }

@@ -18,7 +18,7 @@ class ContactTicketResource extends Resource
     protected static ?string $model = ContactTicket::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
-    protected static bool $shouldRegisterNavigation = false;
+    // protected static bool $shouldRegisterNavigation = false;
     protected static ?string $navigationGroup = 'Content & Support';
 
     public static function form(Form $form): Form

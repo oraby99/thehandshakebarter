@@ -30,10 +30,6 @@ class ItemStatusResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->unique(ignoreRecord: true),
             ]);
     }
 
@@ -44,9 +40,6 @@ class ItemStatusResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('slug')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
