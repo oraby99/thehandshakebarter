@@ -70,14 +70,21 @@ class BarterResource extends Resource
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('requester.name')
                     ->label('Requester')
+                    ->searchable()
                     ->sortable(),
+
                 Tables\Columns\TextColumn::make('receiver.name')
                     ->label('Receiver')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('requesterItem.title')
-                    ->label('Requester Item'),
+                    ->label('Requester Item')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('receiverItem.title')
-                    ->label('Receiver Item'),
+                    ->label('Receiver Item')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {

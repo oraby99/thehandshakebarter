@@ -11,19 +11,12 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::where('is_published', true)->get();
+        $pages = Page::all();
 
         return response()->json([
             'data' => PageResource::collection($pages)
         ]);
     }
 
-    public function show($slug)
-    {
-        $page = Page::with('videos')->where('slug', $slug)->where('is_published', true)->firstOrFail();
 
-        return response()->json([
-            'data' => new PageResource($page)
-        ]);
-    }
 }

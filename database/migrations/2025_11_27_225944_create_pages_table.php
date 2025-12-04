@@ -12,10 +12,8 @@ return new class extends Migration {
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
             $table->string('title');
             $table->longText('content')->nullable();
-            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }

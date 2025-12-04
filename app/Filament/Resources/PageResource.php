@@ -25,9 +25,7 @@ class PageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
+
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -39,12 +37,11 @@ class PageResource extends Resource
                         Forms\Components\TextInput::make('video_url')
                             ->url()
                             ->required(),
-                        Forms\Components\Textarea::make('description')
-                            ->rows(3),
+                        Forms\Components\TextInput::make('description')
+                            ->label('title'),
                     ])
                     ->columnSpanFull(),
-                Forms\Components\Toggle::make('is_published')
-                    ->required(),
+
             ]);
     }
 
@@ -53,12 +50,8 @@ class PageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\IconColumn::make('is_published')
-                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -73,7 +66,7 @@ class PageResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                // Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([

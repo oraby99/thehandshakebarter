@@ -11,15 +11,12 @@ class Page extends Model
 
     protected $fillable = [
         'title',
-        'slug',
         'content',
         'video_urls',
-        'is_published',
     ];
 
     protected $casts = [
         'video_urls' => 'array',
-        'is_published' => 'boolean',
     ];
 
     public function videos()

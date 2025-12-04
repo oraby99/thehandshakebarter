@@ -28,7 +28,6 @@ Route::prefix('v1')->group(function () {
 
     // Public
     Route::get('pages', [PageController::class, 'index']);
-    Route::get('pages/{slug}', [PageController::class, 'show']);
     Route::post('contact', [ContactController::class, 'store']);
     Route::get('categories', [CategoryController::class, 'index']);
     Route::get('categories/{category}', [CategoryController::class, 'show']);
